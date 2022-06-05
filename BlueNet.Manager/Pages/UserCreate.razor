@@ -1,0 +1,50 @@
+﻿@page "/userCreates"
+
+@using BlueNet.Models;
+@using BlueNet.Manager.Services;
+
+@inject IUserApiClient UserApiClient;
+@inject NavigationManager NavigationManager;
+@inject IToastService ToastService; 
+
+<h3>User Create</h3>
+
+<EditForm Model="UserRequestCreate" OnValidSubmit="SubmitCreateUser">
+    <DataAnnotationsValidator />
+    <div class="form-group">
+        <label for="UserName">UserName</label>
+        <InputText class="form-control" @bind-Value="UserRequestCreate.UserName"></InputText>
+        <ValidationMessage For="()=>UserRequestCreate.UserName"></ValidationMessage>
+        <small id="usernameHelp" class="form-text text-muted">Please enter user title here.</small>
+    </div>
+
+    <div class="form-group">
+        <label for="Email">Email</label>
+        <InputNumber class="form-control" @bind-Value="UserRequestCreate.Email"></InputNumber>
+        <ValidationMessage For="()=>UserRequestCreate.Email"></ValidationMessage>
+        <small id="emailHelp" class="form-text text-muted">Please enter user title here.</small>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</EditForm>
+
+@code {
+   private UserCreateRequest UserRequestCreate = new UserCreateRequest();
+
+   private async Task SubmitCreateUser(EditContext context)
+   {
+        var result = await UserApiClient.CreateUser(UserRequestCreate);
+       
+        if (result)
+         {
+            ToastService.ShowSuccess($"{UserRequestCreate.UserName} has been created successfully.", "Success");
+            NavigationManager.NavigateTo("/users");
+        }
+        else
+        {
+            ToastService.ShowError($"An error occurred in progress. Please contact to administrator.","Error");
+        }
+       
+    }
+}

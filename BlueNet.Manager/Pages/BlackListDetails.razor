@@ -1,0 +1,33 @@
+﻿@page "/blackListDetails/{blackListId}"
+
+@using BlueNet.Manager.Components;
+
+@inject IConfiguration Configuration
+
+@if (blacklistDto == null)
+{
+    <LoadingIndicator/>
+}
+else
+{
+    <h3>BlackList Detail </h3>
+    <div>
+        <table class="table">
+        <tr>
+            <td>Url</td>
+            <td>@blacklistDto.Url</td>
+        </tr>
+        <tr>
+            <td>UserId</td>
+            <td>@blacklistDto.UserId</td>
+        </tr>
+        <tr>
+            <td>Create date</td>
+            @*<td>@blacklistDto.CreatedDate.ToString("dd/MM/yyyy hh:mm")</td>*@
+            <td>@blacklistDto.CreatedDate.ToString(Configuration["DataTimeFormat"])</td>
+
+        </tr>
+    </table>
+    </div>
+    
+}

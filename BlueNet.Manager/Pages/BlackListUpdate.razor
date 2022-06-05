@@ -1,0 +1,70 @@
+﻿@page "/blackListUpdate/{blackListId}"
+
+@using BlueNet.Models;
+@using BlueNet.Manager.Services;
+@using BlueNet.Manager.Components;
+
+@inject IBlackListApiClient BlackListApiClient;
+@inject NavigationManager NavigationManager;
+@inject IToastService ToastService; 
+
+<h3> BlackList Edit</h3>
+
+@if(BLackListUpdate == null)
+{
+    <LoadingIndicator />
+}
+else
+{
+    <EditForm Model="BLackListUpdate" OnValidSubmit="SubmitUpdateBlackList">
+    <DataAnnotationsValidator />
+    <div class="form-group">
+        <label for="Url">Url</label>
+        <InputText class="form-control" @bind-Value="BLackListUpdate.Url"></InputText>
+        <ValidationMessage For="()=>BLackListUpdate.Url"></ValidationMessage>
+        <small id="urlHelp" class="form-text text-muted">Please enter black list title here.</small>
+    </div>
+
+   @*<div class="form-group">
+        <label for="UserId">UserId</label>
+        <InputNumber class="form-control" @bind-Value="BLackListUpdate.UserId"></InputNumber>
+        <ValidationMessage For="()=>BLackListUpdate.UserId"></ValidationMessage>
+        <small id="userIdHelp" class="form-text text-muted">Please enter black list title here.</small>
+    </div>*@
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</EditForm>
+}
+
+
+@code {
+    [Parameter]
+    public string blackListId { get; set; }
+
+    private BlackListUpdateRequest BLackListUpdate;
+
+    protected async override Task OnInitializedAsync()
+    {
+        var blackListDto = await BlackListApiClient.GetBlackListDetail(blackListId);
+
+        BLackListUpdate = new BlackListUpdateRequest();
+        BLackListUpdate.Url = blackListDto.Url;
+        ///blackListDto.UserId = blackListDto.UserId;
+    }
+
+
+    private async Task SubmitUpdateBlackList(EditContext context)
+    {
+        var result = await BlackListApiClient.UpdateBlackList(Guid.Parse(blackListId), BLackListUpdate);
+        if (result)
+         {
+            ToastService.ShowSuccess($"{BLackListUpdate.Url} has been update successfully.", "Success");
+            NavigationManager.NavigateTo("/blackLists");
+        }
+        else
+        {
+            ToastService.ShowError($"An error occurred in progress. Please contact to administrator.","Error");
+        }
+    }
+}
+

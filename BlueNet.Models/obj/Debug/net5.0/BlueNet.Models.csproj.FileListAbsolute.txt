@@ -1,0 +1,12 @@
+J:\BlueNet\BlueNet.Models\bin\Debug\net5.0\BlueNet.Models.deps.json
+J:\BlueNet\BlueNet.Models\bin\Debug\net5.0\BlueNet.Models.dll
+J:\BlueNet\BlueNet.Models\bin\Debug\net5.0\BlueNet.Models.pdb
+J:\BlueNet\BlueNet.Models\obj\Debug\net5.0\BlueNet.Models.csproj.AssemblyReference.cache
+J:\BlueNet\BlueNet.Models\obj\Debug\net5.0\BlueNet.Models.GeneratedMSBuildEditorConfig.editorconfig
+J:\BlueNet\BlueNet.Models\obj\Debug\net5.0\BlueNet.Models.AssemblyInfoInputs.cache
+J:\BlueNet\BlueNet.Models\obj\Debug\net5.0\BlueNet.Models.AssemblyInfo.cs
+J:\BlueNet\BlueNet.Models\obj\Debug\net5.0\BlueNet.Models.csproj.CoreCompileInputs.cache
+J:\BlueNet\BlueNet.Models\obj\Debug\net5.0\BlueNet.Models.dll
+J:\BlueNet\BlueNet.Models\obj\Debug\net5.0\refint\BlueNet.Models.dll
+J:\BlueNet\BlueNet.Models\obj\Debug\net5.0\BlueNet.Models.pdb
+J:\BlueNet\BlueNet.Models\obj\Debug\net5.0\ref\BlueNet.Models.dll

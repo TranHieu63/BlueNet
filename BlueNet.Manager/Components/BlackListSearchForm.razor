@@ -1,0 +1,59 @@
+﻿@using BlueNet.Models;
+@using Blazored.Toast.Services;
+@using BlueNet.Manager.Services;
+
+<EditForm Model="@_blackListSearch" OnSubmit="@SearchFrom">
+
+    <div class="row">
+
+       <div class="col">
+            <label>Url</label>
+            <InputText class="form-control" @bind-Value="_blackListSearch.Url"></InputText>
+       </div>
+
+      @* <div class="col">
+                <label>UserId</label>
+                <InputSelect class="form-control" @bind-Value="_blackListSearch.UserId">
+                <option>Select an user</option>
+                @foreach (var item in Users)
+                {
+                    <option value="@item.Id">@item.Id</option>
+                }
+                </InputSelect>
+       </div>*@
+
+       <div class="col pt-4" >
+            <button type="submit" class="btn btn-primary">Search</button>
+       </div>
+
+       <div class="col pt-4" >
+            <a href="/blackListCreate" class="btn btn-success">Create</a>
+        </div>
+    </div>
+            
+</EditForm>
+
+
+@code {
+    [Inject] private IUserApiClient UserApiClient { get; set; }
+
+    [Inject] private IToastService ToastService { get; set; }
+
+    [Parameter]
+    public EventCallback<BlackListSearch> OnSearch { get; set; }
+
+    private BlackListSearch _blackListSearch = new BlackListSearch();
+
+    private List<UserDto> Users;
+
+    //protected override async Task OnInitializedAsync()
+    //{
+    //    Users = await UserApiClient.GetUsers();
+    //}
+
+    private async Task SearchFrom(EditContext context)
+    {
+        //BlackLists = await BlackListApiClient.GetBlackList(_blackListSearch);
+        await OnSearch.InvokeAsync(_blackListSearch);
+    }
+}

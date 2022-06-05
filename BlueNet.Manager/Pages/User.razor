@@ -1,0 +1,61 @@
+﻿@page "/users"
+
+@using BlueNet.Manager.Components;
+
+@*@inject IConfiguration Configuration**@
+
+<h3>Users</h3>
+
+@if (Users == null)
+{
+   <LoadingIndicator/>
+}
+else
+{
+    <div class="row">
+        <UserSearchForm OnSearch="SearchUser"></UserSearchForm>
+    </div>
+
+   <div class="row mt-4">
+        <table class="table">
+        <thead>
+            <tr>
+                <th>UserId</th>
+                <th>Email</th>
+                <th>UserName</th>
+                <th>FullName</th>
+                <th>
+
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Users)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Email</td>
+                    <td>@item.UserName</td>
+                    <td>@item.FullName</td>
+                    
+                    <td>
+                        <a href="/userDetails/@item.Id" class="btn btn-primary">Detail</a>
+                       @* <a href="/blackListUpdate/@item.BlackListId" class="btn btn-warning">Edit</a>
+
+                        <button class="btn btn-danger" @onclick="()=> OnDeleteBlackList(item.BlackListId)">Delete</button>*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+        </table>
+    </div>
+
+    @*<Confirmation ConfirmationMessage="Are you sure to delete?"
+                   ConfirmationTitle="Delete Task"
+                   @ref="DeleteConfirmation"
+                   ConfirmationChanged="OnConfirmDeleteTask">
+
+    </Confirmation>*@
+}

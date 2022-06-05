@@ -1,0 +1,31 @@
+﻿@page "/userDetails/{userId}"
+
+@using BlueNet.Manager.Components;
+
+
+@if (userDto == null)
+{
+    <LoadingIndicator/>
+}
+else
+{
+    <h3>User Detail </h3>
+    <div>
+        <table class="table">
+        <tr>
+            <td>UserName</td>
+            <td>@userDto.UserName</td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>@userDto.Email</td>
+        </tr>
+       @* <tr>
+            <td>FullName</td>
+            <td>@userDto.</td>
+        </tr>*@
+        
+    </table>
+    </div>
+    
+}

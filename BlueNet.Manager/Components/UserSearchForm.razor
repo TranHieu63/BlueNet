@@ -1,0 +1,53 @@
+﻿@using BlueNet.Models;
+@using Blazored.Toast.Services;
+@using BlueNet.Manager.Services;
+
+<EditForm Model="@_userSearch" OnSubmit="@SearchFromUser">
+
+    <div class="row">
+
+       <div class="col">
+            <label>UserName</label>
+            <InputText class="form-control" @bind-Value="_userSearch.UserName"></InputText>
+       </div>
+
+       @* <div class="col">
+            <label>Email</label>
+            <InputText class="form-control" @bind-Value="_userSearch.Email"></InputText>
+       </div>*@
+
+
+       <div class="col pt-4" >
+            <button type="submit" class="btn btn-primary">Search</button>
+       </div>
+
+       <div class="col pt-4" >
+            <a href="/userCreates" class="btn btn-success">Create</a>
+        </div>
+    </div>
+            
+</EditForm>
+
+
+@code {
+    //[Inject] private IUserApiClient UserApiClient { get; set; }
+
+    [Inject] private IToastService ToastService { get; set; }
+
+    [Parameter]
+    public EventCallback<UserSearch> OnSearch { get; set; }
+
+    private UserSearch _userSearch = new UserSearch();
+
+    private List<UserDto> Users;
+
+    //protected override async Task OnInitializedAsync()
+    //{
+    //    Users = await UserApiClient.GetUsers();
+    //}
+
+    private async Task SearchFromUser(EditContext context)
+    {
+        await OnSearch.InvokeAsync(_userSearch);
+    }
+}
