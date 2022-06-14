@@ -13,5 +13,6 @@ namespace BlueNet.Api.Repositoties
         Task<User> Create(User user);
         Task<User> Update(User user);
         Task<User> Delete(User user);
+        Task<User> GetByUserName(string userName);
     }
 }

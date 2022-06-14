@@ -127,7 +127,7 @@ using BlueNet.Manager.Services;
 #nullable restore
 #line 32 "J:\BlueNet\BlueNet.Manager\Components\UserSearchForm.razor"
        
-    //[Inject] private IUserApiClient UserApiClient { get; set; }
+    [Inject] private IUserApiClient UserApiClient { get; set; }
 
     [Inject] private IToastService ToastService { get; set; }
 

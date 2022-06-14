@@ -103,20 +103,6 @@ using Microsoft.Extensions.Configuration;
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 3 "J:\BlueNet\BlueNet.Manager\Pages\BlackListCreate.razor"
-using BlueNet.Models;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 4 "J:\BlueNet\BlueNet.Manager\Pages\BlackListCreate.razor"
-using BlueNet.Manager.Services;
-
-#line default
-#line hidden
-#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/blackListCreate")]
     public partial class BlackListCreate : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -125,33 +111,6 @@ using BlueNet.Manager.Services;
         {
         }
         #pragma warning restore 1998
-#nullable restore
-#line 32 "J:\BlueNet\BlueNet.Manager\Pages\BlackListCreate.razor"
-       
-   private BlackListCreateRequest BLackListCreate = new BlackListCreateRequest();
-
-   private async Task SubmitCreateBlackList(EditContext context)
-   {
-        var result = await BlackListApiClient.CreateBlackList(BLackListCreate);
-       
-        if (result)
-         {
-            ToastService.ShowSuccess($"{BLackListCreate.Url} has been created successfully.", "Success");
-            NavigationManager.NavigateTo("/blackLists");
-        }
-        else
-        {
-            ToastService.ShowError($"An error occurred in progress. Please contact to administrator.","Error");
-        }
-       
-    }
-
-#line default
-#line hidden
-#nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IToastService ToastService { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IBlackListApiClient BlackListApiClient { get; set; }
     }
 }
 #pragma warning restore 1591

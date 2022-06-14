@@ -103,21 +103,7 @@ using Microsoft.Extensions.Configuration;
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 3 "J:\BlueNet\BlueNet.Manager\Pages\UserCreate.razor"
-using BlueNet.Models;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 4 "J:\BlueNet\BlueNet.Manager\Pages\UserCreate.razor"
-using BlueNet.Manager.Services;
-
-#line default
-#line hidden
-#nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/userCreates")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/userCreate")]
     public partial class UserCreate : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -125,33 +111,6 @@ using BlueNet.Manager.Services;
         {
         }
         #pragma warning restore 1998
-#nullable restore
-#line 32 "J:\BlueNet\BlueNet.Manager\Pages\UserCreate.razor"
-       
-   private UserCreateRequest UserRequestCreate = new UserCreateRequest();
-
-   private async Task SubmitCreateUser(EditContext context)
-   {
-        var result = await UserApiClient.CreateUser(UserRequestCreate);
-       
-        if (result)
-         {
-            ToastService.ShowSuccess($"{UserRequestCreate.UserName} has been created successfully.", "Success");
-            NavigationManager.NavigateTo("/users");
-        }
-        else
-        {
-            ToastService.ShowError($"An error occurred in progress. Please contact to administrator.","Error");
-        }
-       
-    }
-
-#line default
-#line hidden
-#nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IToastService ToastService { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IUserApiClient UserApiClient { get; set; }
     }
 }
 #pragma warning restore 1591

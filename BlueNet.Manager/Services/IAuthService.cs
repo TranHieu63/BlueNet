@@ -8,5 +8,7 @@ namespace BlueNet.Manager.Services
         Task<LoginResponse> Login(LoginRequest loginRequest);
 
         Task Logout();
+
+        Task<UserDto> GetCurrentLoginUser();
     }
 }

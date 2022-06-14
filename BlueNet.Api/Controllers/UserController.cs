@@ -12,7 +12,7 @@ namespace BlueNet.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+   // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class UserController : ControllerBase
     {
         private readonly IUserRepository _userListRepository;
@@ -50,9 +50,27 @@ namespace BlueNet.Api.Controllers
             {
                UserName = users.UserName,
                Email = users.Email,
+               FullName = users.FirstName + " " + users.LastName,
             });
         }
 
+        [HttpGet]
+        [Route("UserName/{userName}")]
+        public async Task<IActionResult> GetByUserName([FromRoute] string userName)
+        {
+            var user = await _userListRepository.GetByUserName(userName);
+
+            if (user == null)
+            {
+                return NotFound($"{userName} is not found");
+            }
+            return Ok(new UserDto()
+            {
+                Id = user.Id,
+                UserName = user.UserName,
+                Email = user.Email,
+            });
+        }
 
         [HttpPost]
         public async Task<IActionResult> Create(UserCreateRequest request)
@@ -62,6 +80,7 @@ namespace BlueNet.Api.Controllers
 
             var user = await _userListRepository.Create(new Entities.User()
             {
+               Id = Guid.NewGuid(),
                FirstName = request.FirstName,
                LastName = request.LastName,
                UserName = request.UserName,
@@ -69,8 +88,35 @@ namespace BlueNet.Api.Controllers
                Email = request.Email,
                NormalizedEmail = request.NormalizedEmail,
                SecurityStamp = request.SecurityStamp
-            });
+            });;;
             return CreatedAtAction(nameof(GetById), new { id = user.Id }, user);
+        }
+
+        [HttpPut]
+        [Route("{id}")]
+        public async Task<IActionResult> Update(Guid id, [FromBody] UserUpdateRequest request)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var userFromDb = await _userListRepository.GetById(id);
+
+            if (userFromDb == null)
+            {
+                return NotFound($"{id} is not found");
+            }
+
+            userFromDb.UserName = request.UserName;
+            userFromDb.Email = request.Email;
+
+            var userResult = await _userListRepository.Update(userFromDb);
+
+            return Ok(new UserDto()
+            {
+                UserName = userResult.UserName,
+                Email = userResult.Email,
+
+            });
         }
 
         [HttpDelete]

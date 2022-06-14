@@ -137,6 +137,8 @@ using BlueNet.Manager.Services;
         ShowErrors = false;
 
         var result = await AuthService.Login(LoginModel);
+        
+
         if (result.Successful)
         {
             NavigationManager.NavigateTo("/blackLists");

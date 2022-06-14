@@ -36,8 +36,7 @@ namespace BlueNet.Api.Repositoties
         public async Task<IEnumerable<Entities.BlackList>> GetBlackListByUserId(Guid userId, BlackListSearch blackListSearch)
         {
             var query = _context.BlackLists
-                .Where(x => x.UserId == userId)
-                .Include(x => x.User).AsQueryable();
+                .Where(x => x.UserId == userId).AsQueryable();
 
             if (!string.IsNullOrEmpty(blackListSearch.Url))
                 query = query.Where(x => x.Url.Contains(blackListSearch.Url));

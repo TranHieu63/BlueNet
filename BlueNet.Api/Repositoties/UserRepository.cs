@@ -52,5 +52,19 @@ namespace BlueNet.Api.Repositoties
             await _context.SaveChangesAsync();
             return user;
         }
+
+        public async Task<User> GetByUserName(string userName)
+        {
+            User user = null;
+            var listUser = await _context.Users.ToListAsync();
+            foreach (var item in listUser)
+            {
+                if(userName == item.UserName)
+                {
+                    user = item;
+                }
+            }
+            return user ;
+        }
     }
 }

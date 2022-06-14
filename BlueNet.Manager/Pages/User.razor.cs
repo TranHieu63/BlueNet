@@ -2,6 +2,7 @@
 using BlueNet.Manager.Services;
 using BlueNet.Models;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Forms;
 using System;
 using System.Collections.Generic;
@@ -14,17 +15,63 @@ namespace BlueNet.Manager.Pages
     {
         [Inject] private IUserApiClient UserApiClient { get; set; }
 
+        [Inject] private NavigationManager NavigationManager { get; set; }
+
+        [Inject] private AuthenticationStateProvider authProvider { get; set; }
+
+        private int role;
+
         private List<UserDto> Users;
 
-        //protected Confirmation DeleteConfirmation { get; set; }
+        protected Confirmation DeleteConfirmation { get; set; }
 
-        //private Guid DeleteId { get; set; }
+        private Guid DeleteId { get; set; }
 
         private UserSearch _userSearch = new UserSearch();
 
         protected override async Task OnInitializedAsync()
         {
             Users = await UserApiClient.GetUsers(_userSearch);
+
+            //lấy thông tin user đăng nhập
+            var authState = await authProvider.GetAuthenticationStateAsync();
+
+
+            if (authState != null)
+            {
+                var user = authState.User;
+
+                if (user.Identity.IsAuthenticated)
+                {
+                    var userName = user.Identity.Name;
+
+                    //lấy thông tin người dùng đang đăng nhập theo userName 
+                    var userDto = await UserApiClient.GetUserByUserName(userName);
+
+                    if (userDto != null)
+                    {
+                        //nếu có user đăng nhập thì lấy tiếp thông tin quyền hạn
+
+                        if (true)
+                        {
+                            role = 1;
+                        }
+                    }
+                    else
+                    {
+
+                    }
+                }
+                else
+                {
+                    NavigationManager.NavigateTo("/login");
+                }
+            }
+            else
+            {
+                NavigationManager.NavigateTo("/login");
+            }
+
         }
 
         public async Task SearchUser(UserSearch userSearch)
@@ -33,21 +80,20 @@ namespace BlueNet.Manager.Pages
             Users = await UserApiClient.GetUsers(_userSearch);
         }
 
-        //public void OnDeleteBlackList(Guid deleteId)
-        //{
-        //    DeleteId = deleteId;
-        //    DeleteConfirmation.Show();
-        //}
+        public void OnDeleteUser(Guid deleteId)
+        {
+            DeleteId = deleteId;
+            DeleteConfirmation.Show();
+        }
 
-        //public async Task OnConfirmDeleteTask(bool deleteConfirmed)
-        //{
-        //    if (deleteConfirmed)
-        //    {
-        //        await BlackListApiClient.DeleteBlackList(DeleteId);
-        //        BlackLists = await BlackListApiClient.GetBlackList(_blackListSearch);
-        //    }
-        //}
+        public async Task OnConfirmDeleteUser(bool deleteConfirmed)
+        {
+            if (deleteConfirmed)
+            {
+                await UserApiClient.DeleteUser(DeleteId);
+                Users = await UserApiClient.GetUsers(_userSearch);
+            }
+        }
     }
-
     
 }

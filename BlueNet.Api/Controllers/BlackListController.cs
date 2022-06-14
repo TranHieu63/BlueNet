@@ -15,7 +15,7 @@ namespace BlueNet.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+   // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class BlackListController : ControllerBase
     {
         private readonly IBlackListRepository _blackListRepository;
@@ -82,7 +82,7 @@ namespace BlueNet.Api.Controllers
             {
                 BlackListId = request.BlackListId,
                 Url = request.Url,
-               // UserId = request.UserId,
+                UserId = request.UserId,
                 CreatedDate = DateTime.Now
             }); 
             return CreatedAtAction(nameof(GetById), new { id = blackList.BlackListId }, blackList);

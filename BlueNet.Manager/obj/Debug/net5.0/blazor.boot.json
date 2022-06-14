@@ -200,15 +200,15 @@
       "mscorlib.dll": "sha256-zMI\/dXK7DoZZ9Qm9U9\/jRN4iQ9Ss3w8\/rwQQxC6SW9Y=",
       "netstandard.dll": "sha256-W3q3PN+lpRB+tRJEIhtMgYOGFv0pauEeeCS9iIRkKAM=",
       "System.Private.CoreLib.dll": "sha256-9rUJv1mXEQdGt\/kWiJ1ITPPzp3cAi3lSmqHVTisp7w0=",
-      "BlueNet.Models.dll": "sha256-DR71k3cerLSA+d+cAh8AR+ri\/VWyOa9BCrNfNygODg0=",
-      "BlueNet.Manager.dll": "sha256-u9BKOw9NAKRcJaYaP8Au6XbX1+OLza1HsGFqQnQmXNw="
+      "BlueNet.Models.dll": "sha256-Fy5UI0geXtHju0b7gEvWF2CzBSNQToGrCiKObAOIK9U=",
+      "BlueNet.Manager.dll": "sha256-o5hq8ZI8KEcELtgO93J3VBAe5TzjWa9EYCgrjTG0cNM="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
-      "BlueNet.Models.pdb": "sha256-JseAz7sDXR85einxJ+c7k6MeaH5dYAToVmf0PJ6FgEc=",
-      "BlueNet.Manager.pdb": "sha256-fsX4uQuwF3mhTxrSN5tun3NCxtv2o8Ou7hfdtTObIQE="
+      "BlueNet.Models.pdb": "sha256-6WeM\/ziBOAgI94qqyoHIdUvxmncaSGj2Js2sC6+U6c8=",
+      "BlueNet.Manager.pdb": "sha256-++cJzd1Xz5Qhmzt\/9Uay6ScnJvZhL8HcYwf+VVZv3tg="
     },
     "runtime": {
       "dotnet.timezones.blat": "sha256-8oJip361m8OrfLRJOuIeswWKaoxtT27\/wINCxhn+s4c=",

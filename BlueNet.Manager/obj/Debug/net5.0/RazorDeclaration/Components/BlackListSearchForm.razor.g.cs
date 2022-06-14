@@ -143,7 +143,7 @@ using BlueNet.Manager.Services;
     //    Users = await UserApiClient.GetUsers();
     //}
 
-    private async Task SearchFrom(EditContext context)
+    private async Task SearchFromBlackList(EditContext context)
     {
         //BlackLists = await BlackListApiClient.GetBlackList(_blackListSearch);
         await OnSearch.InvokeAsync(_blackListSearch);

@@ -2,9 +2,11 @@
 using BlueNet.Manager.Services;
 using BlueNet.Models;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Forms;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -13,6 +15,10 @@ namespace BlueNet.Manager.Pages
     public partial class MyBlackLists
     {
         [Inject] private IBlackListApiClient BlackListApiClient { get; set; }
+        [Inject] private AuthenticationStateProvider authProvider { get; set; }
+
+        AuthenticationState authState;
+        private string userId;
 
         private List<BlackListDto> BlackLists;
 
@@ -24,7 +30,11 @@ namespace BlueNet.Manager.Pages
 
         protected override async Task OnInitializedAsync()
         {
+
+
             BlackLists = await BlackListApiClient.GetBlackList(_blackListSearch);
+
+            
         }
 
         public async Task SearchBlackList(BlackListSearch blackListSearch)

@@ -2,7 +2,7 @@
 @using Blazored.Toast.Services;
 @using BlueNet.Manager.Services;
 
-<EditForm Model="@_blackListSearch" OnSubmit="@SearchFrom">
+<EditForm Model="@_blackListSearch" OnSubmit="@SearchFromBlackList">
 
     <div class="row">
 
@@ -51,7 +51,7 @@
     //    Users = await UserApiClient.GetUsers();
     //}
 
-    private async Task SearchFrom(EditContext context)
+    private async Task SearchFromBlackList(EditContext context)
     {
         //BlackLists = await BlackListApiClient.GetBlackList(_blackListSearch);
         await OnSearch.InvokeAsync(_blackListSearch);

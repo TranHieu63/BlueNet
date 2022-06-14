@@ -64,9 +64,11 @@ namespace BlueNet.Manager.Services
         //GetMyBlackList
         public async Task<List<BlackListDto>> GetMyBlackList(BlackListSearch blackListSearch)
         {
+            
             string url = $"/api/BlackList/me?url={blackListSearch.Url}&userId={blackListSearch.UserId}";
             var result = await _httpClient.GetFromJsonAsync<List<BlackListDto>>(url);
             return result;
+            
         }
     }
 }

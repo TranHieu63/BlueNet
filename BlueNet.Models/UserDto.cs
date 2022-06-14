@@ -22,5 +22,13 @@ namespace BlueNet.Models
         [MaxLength(250)]
         [Required]
         public string FullName { get; set; }
+
+        [MaxLength(250)]
+        [Required]
+        public string FirstName { get; set; }
+
+        [MaxLength(250)]
+        [Required]
+        public string LastName { get; set; }
     }
 }
