@@ -40,10 +40,10 @@ namespace BlueNet.Manager.Services
         }
 
         //Create
-        public async Task<bool> CreateBlackList(BlackListCreateRequest request)
+        public async Task<object> CreateBlackList(BlackListCreateRequest request)
         {
             var result = await _httpClient.PostAsJsonAsync($"/api/BlackList", request);
-            return result.IsSuccessStatusCode;
+            return await result.Content.ReadAsStringAsync();
 
         }
 

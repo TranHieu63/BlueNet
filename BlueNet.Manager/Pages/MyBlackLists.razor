@@ -19,9 +19,10 @@ else{
         <table class="table">
         <thead>
             <tr>
-                <th>BlackListId</th>
+               @* <th>BlackListId</th>*@
                 <th>Url</th>
-                <th>UserId</th>
+                @*<th>UserId</th>*@
+                <th>UserName</th>
                 <th>Create Date</th>
                 <th>
 
@@ -33,17 +34,17 @@ else{
             @foreach (var item in BlackLists)
             {
                 <tr>
-                    <td>@item.BlackListId</td>
+                   @* <td>@item.BlackListId</td>*@
                     <td>@item.Url</td>
-                    <td>@item.UserId</td>
+                    @*<td>@item.UserId</td>*@
+                    <td>@item.UserName</td>
                     @*<td>@item.CreatedDate.ToString("dd/MM/yyyy hh:mm")</td>*@
 
                     <td>@item.CreatedDate.ToString(Configuration["DataTimeFormat"])</td>
                     <td>
                         <a href="/blackListDetails/@item.BlackListId" class="btn btn-primary">Detail</a>
-                       @* <a href="/blackListUpdate/@item.BlackListId" class="btn btn-warning">Edit</a>
-
-                        <button class="btn btn-danger" @onclick="()=> OnDeleteBlackList(item.BlackListId)">Delete</button>*@
+                        <a href="/blackListUpdate/@item.BlackListId" class="btn btn-warning">Edit</a>
+                        <button class="btn btn-danger" @onclick="()=> OnDeleteBlackList(item.BlackListId)">Delete</button>
                     </td>
                 </tr>
             }

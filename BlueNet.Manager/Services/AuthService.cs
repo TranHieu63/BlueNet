@@ -50,7 +50,7 @@ namespace BlueNet.Services
             ((ApiAuthenticationStateProvider)_authenticationStateProvider).MarkUserAsAuthenticated(loginRequest.UserName);
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", loginResponse.Token);
 
-
+            await GetCurrentLoginUser();
 
             return loginResponse;
         }
@@ -58,6 +58,8 @@ namespace BlueNet.Services
         public async Task Logout()
         {
             await _localStorage.RemoveItemAsync("authToken");
+            await _localStorage.RemoveItemAsync("UserId");
+            await _localStorage.RemoveItemAsync("UserRole");
             ((ApiAuthenticationStateProvider)_authenticationStateProvider).MarkUserAsLoggedOut();
             _httpClient.DefaultRequestHeaders.Authorization = null;
         }
@@ -77,6 +79,8 @@ namespace BlueNet.Services
                 //lấy thông tin người dùng đang đăng nhập theo userName 
                 userDto = await _httpClient.GetFromJsonAsync<UserDto>(url);
                 await _localStorage.SetItemAsync("UserId", userDto.Id);
+                //await _localStorage.SetItemAsync("UserName", userDto.UserName);
+                await _localStorage.SetItemAsync("UserRole", userDto.RoleName);
             }
 
             return userDto;

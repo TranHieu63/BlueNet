@@ -30,5 +30,10 @@ namespace BlueNet.Models
         [MaxLength(250)]
         [Required]
         public string LastName { get; set; }
+
+        [MaxLength(250)]
+        public string RoleName { get; set; }
+
+        public Guid RoleId { get; set; }
     }
 }

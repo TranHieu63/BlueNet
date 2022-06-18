@@ -35,6 +35,10 @@ namespace BlueNet.Manager.Services
         //Create
         public async Task<bool> CreateUser(UserCreateRequest request)
         {
+            request.NormalizedUserName = request.UserName.ToLower();
+            request.NormalizedEmail = request.Email.ToLower();
+            request.SecurityStamp = request.UserName.ToLower();
+
             var result = await _httpClient.PostAsJsonAsync($"/api/User", request);
             return result.IsSuccessStatusCode;
 
@@ -61,5 +65,24 @@ namespace BlueNet.Manager.Services
             var result = await _httpClient.GetFromJsonAsync<UserDto>(url);
             return result;
         }
+
+        //Lấy ra danh sách Role (bảng AspNetRoles)
+        public async Task<List<RoleDto>> GetRole()
+        {
+            string url = $"/api/User/role";
+            var result = await _httpClient.GetFromJsonAsync<List<RoleDto>>(url);
+            return result;
+        }
+
+        //Lấy ra danh sách AspNetUserRoles
+        public async Task<List<UserRoleDto>> GetUserRole()
+        {
+            string url = $"/api/User/userRole";
+            var result = await _httpClient.GetFromJsonAsync<List<UserRoleDto>>(url);
+            return result;
+        }
+
+
+        
     }
 }

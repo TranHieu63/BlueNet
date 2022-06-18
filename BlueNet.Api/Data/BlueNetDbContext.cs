@@ -13,9 +13,10 @@ namespace BlueNet.Api.Data
         }
 
         public DbSet<BlackList> BlackLists { get; set; }
-        // public DbSet<User> Users { get; set; }
+         
 
-        public virtual DbSet<Violation> Violation { get; set; }
+        public DbSet<Violation> Violations { get; set; }
+         
 
     }
 }

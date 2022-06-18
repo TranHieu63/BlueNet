@@ -17,6 +17,7 @@ namespace BlueNet.Api.Entities
 
         [ForeignKey("UserId")]
         public User User { get; set; }
+        //public string UserName { get; set; }
         public DateTime CreatedDate { get; set; }
 
         internal object Select(Func<object, BlackListDto> value)

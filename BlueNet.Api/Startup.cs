@@ -78,6 +78,7 @@ namespace BlueNet.Api
             //AddTransient
             services.AddTransient<IBlackListRepository, BlackListRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IViolationRepository, ViolationRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

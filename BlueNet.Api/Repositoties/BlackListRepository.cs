@@ -27,8 +27,12 @@ namespace BlueNet.Api.Repositoties
             if (!string.IsNullOrEmpty(blackListSearch.Url))
                 query = query.Where(x => x.Url.Contains(blackListSearch.Url));
 
-            //if (blackListSearch.UserId.HasValue)
-            //    query = query.Where(x => x.UserId == blackListSearch.UserId.Value);
+            if (blackListSearch.UserId.HasValue)
+                query = query.Where(x => x.UserId == blackListSearch.UserId.Value);
+
+            //if (!string.IsNullOrEmpty(blackListSearch.UserName))
+            //    query = query.Where(x => x.UserName.Contains(blackListSearch.UserName));
+
 
             return await query.OrderByDescending(x => x.CreatedDate).ToListAsync();
         }

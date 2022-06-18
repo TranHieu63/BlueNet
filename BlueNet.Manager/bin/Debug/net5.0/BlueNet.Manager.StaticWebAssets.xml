@@ -1,5 +1,5 @@
 ﻿<StaticWebAssets Version="1.0">
-  <ContentRoot BasePath="/" Path="J:\BlueNet\BlueNet.Manager\bin\Debug\net5.0\wwwroot\" />
-  <ContentRoot BasePath="/" Path="J:\BlueNet\BlueNet.Manager\obj\Debug\net5.0\scopedcss\bundle\" />
+  <ContentRoot BasePath="/" Path="J:\BlueNet-20220618T020959Z-001\BlueNet\BlueNet.Manager\bin\Debug\net5.0\wwwroot\" />
+  <ContentRoot BasePath="/" Path="J:\BlueNet-20220618T020959Z-001\BlueNet\BlueNet.Manager\obj\Debug\net5.0\scopedcss\bundle\" />
   <ContentRoot BasePath="_content/Blazored.Toast" Path="C:\Users\Admin\.nuget\packages\blazored.toast\3.2.2\build\..\staticwebassets\" />
 </StaticWebAssets>

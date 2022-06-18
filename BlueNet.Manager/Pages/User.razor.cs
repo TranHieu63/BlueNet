@@ -1,4 +1,5 @@
-﻿using BlueNet.Manager.Components;
+﻿using Blazored.LocalStorage;
+using BlueNet.Manager.Components;
 using BlueNet.Manager.Services;
 using BlueNet.Models;
 using Microsoft.AspNetCore.Components;
@@ -19,7 +20,10 @@ namespace BlueNet.Manager.Pages
 
         [Inject] private AuthenticationStateProvider authProvider { get; set; }
 
-        private int role;
+        [Inject] private ILocalStorageService _localStorage { get; set; }
+
+        private string _roleName;
+        private string _userId;
 
         private List<UserDto> Users;
 
@@ -32,6 +36,9 @@ namespace BlueNet.Manager.Pages
         protected override async Task OnInitializedAsync()
         {
             Users = await UserApiClient.GetUsers(_userSearch);
+
+            _userId = await _localStorage.GetItemAsync<string>("UserId");
+
 
             //lấy thông tin user đăng nhập
             var authState = await authProvider.GetAuthenticationStateAsync();
@@ -51,11 +58,6 @@ namespace BlueNet.Manager.Pages
                     if (userDto != null)
                     {
                         //nếu có user đăng nhập thì lấy tiếp thông tin quyền hạn
-
-                        if (true)
-                        {
-                            role = 1;
-                        }
                     }
                     else
                     {

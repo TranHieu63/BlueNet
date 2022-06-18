@@ -8,7 +8,7 @@
 
 @if (Users == null)
 {
-   <LoadingIndicator/>
+    <LoadingIndicator />
 }
 else
 {
@@ -16,46 +16,51 @@ else
         <UserSearchForm OnSearch="SearchUser"></UserSearchForm>
     </div>
 
-   <div class="row mt-4">
+    <div class="row mt-4">
         <table class="table">
-        <thead>
-            <tr>
-                <th>UserId</th>
-                <th>Email</th>
-                <th>UserName</th>
-                <th>FullName</th>
-                <th>
-
-                </th>
-            </tr>
-        </thead>
-
-        <tbody>
-            @foreach (var item in Users)
-            {
+            <thead>
                 <tr>
-                    <td>@item.Id</td>
-                    <td>@item.Email</td>
-                    <td>@item.UserName</td>
-                    <td>@item.FullName</td>
-                    
-                    <td>
-                        <a href="/userDetails/@item.Id" class="btn btn-primary">Detail</a>
-                        <a href="/userUpdate/@item.Id" class="btn btn-warning">Edit</a>
+                   @* <th>UserId</th>*@
+                    <th>Email</th>
+                    <th>UserName</th>
+                    <th>FullName</th>
+                    <th>Role</th>
+                    <th>
 
-                        <button class="btn btn-danger" @onclick="()=> OnDeleteUser(item.Id)">Delete</button>
-                    </td>
+                    </th>
                 </tr>
-            }
-        </tbody>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Users)
+                {
+                    <tr>
+                        @*<td>@item.Id</td>*@
+                        <td>@item.Email</td>
+                        <td>@item.UserName</td>
+                        <td>@item.FullName</td>
+                        <td>@item.RoleName</td>
+
+                        <td>
+                            <a href="/userDetails/@item.Id" class="btn btn-primary">Detail</a>
+                            <a href="/userUpdate/@item.Id" class="btn btn-warning">Edit</a>
+
+                            @if (_userId != item.Id.ToString())
+                            {
+                                <button class="btn btn-danger" @onclick="()=> OnDeleteUser(item.Id)">Delete</button>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
 
         </table>
     </div>
 
     <Confirmation ConfirmationMessage="Are you sure to delete?"
-                   ConfirmationTitle="Delete User"
-                   @ref="DeleteConfirmation"
-                   ConfirmationChanged="OnConfirmDeleteUser">
+              ConfirmationTitle="Delete User"
+              @ref="DeleteConfirmation"
+              ConfirmationChanged="OnConfirmDeleteUser">
 
     </Confirmation>
 }

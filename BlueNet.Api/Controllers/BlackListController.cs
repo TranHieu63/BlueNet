@@ -19,9 +19,13 @@ namespace BlueNet.Api.Controllers
     public class BlackListController : ControllerBase
     {
         private readonly IBlackListRepository _blackListRepository;
-        public BlackListController(IBlackListRepository blackListRepository)
+
+        private readonly IUserRepository _userListRepository;
+
+        public BlackListController(IBlackListRepository blackListRepository, IUserRepository userListRepository)
         {
             _blackListRepository = blackListRepository;
+            _userListRepository = userListRepository;
         }
 
         //api/blackLists?url=
@@ -35,7 +39,34 @@ namespace BlueNet.Api.Controllers
                 Url = x.Url,
                 UserId = x.UserId,
                 CreatedDate = x.CreatedDate
-            });
+            }).ToList();
+
+            ////Lấy ra UserName
+            var users = await _userListRepository.GetUserList();
+            var userDtos = users.Select(x => new UserDto()
+            {
+                Id = x.Id,
+                UserName = x.UserName,
+                FullName = x.FirstName + " " + x.LastName,
+                Email = x.Email,
+            }).ToList();
+
+            for (int i = 0; i < blackListDtos.Count; i++)
+            {
+                var x = blackListDtos[i];
+                var userId = x.UserId;
+
+                for (int j = 0; j < userDtos.Count; j++)
+                {
+                    var y = userDtos[j];
+
+                    if (userId == y.Id)
+                    {
+                        x.UserName = y.UserName;
+                    }
+
+                }
+            }
             return Ok(blackListDtos);
         }
 
@@ -57,35 +88,35 @@ namespace BlueNet.Api.Controllers
             });
         }
 
-        [HttpGet("me")]
-        public async Task<IActionResult> GetByUserId([FromQuery] BlackListSearch blackListSearch)
-        {
-            var userId = User.GetUserId();
-            var blackLists = await _blackListRepository.GetBlackListByUserId(Guid.Parse(userId), blackListSearch);
-            var blackListDtos = blackLists.Select(x => new BlackListDto()
-            {
-                BlackListId = x.BlackListId,
-                Url = x.Url,
-                UserId = x.UserId,
-                CreatedDate = x.CreatedDate
-            });
-            return Ok(blackListDtos);
-        }
-
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] BlackListCreateRequest request)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var blackList = await _blackListRepository.Create(new Entities.BlackList()
+            //Kiểm tra xem có bị trùng url không
+            bool result = await _blackListRepository.CheckUrl(new CheckUrlParameter()
             {
-                BlackListId = request.BlackListId,
-                Url = request.Url,
-                UserId = request.UserId,
-                CreatedDate = DateTime.Now
-            }); 
-            return CreatedAtAction(nameof(GetById), new { id = blackList.BlackListId }, blackList);
+                Url = request.Url
+            });
+
+            if (result)
+            {
+                return BadRequest("Duplicate");
+            }
+            else
+            {
+                var blackList = await _blackListRepository.Create(new Entities.BlackList()
+                {
+                    BlackListId = request.BlackListId,
+                    Url = request.Url,
+                    UserId = request.UserId,
+                    CreatedDate = DateTime.Now
+                });
+
+
+                return CreatedAtAction(nameof(GetById), new { id = blackList.BlackListId }, blackList);
+            }
         }
 
         [HttpPut]
@@ -139,5 +170,8 @@ namespace BlueNet.Api.Controllers
             bool result = await _blackListRepository.CheckUrl(checkUrl);
             return Ok(result);
         }
+
+
     }
+    
 }

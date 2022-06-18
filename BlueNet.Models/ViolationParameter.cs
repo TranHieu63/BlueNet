@@ -9,11 +9,11 @@ namespace BlueNet.Models
     public class ViolationParameter
     {
         public Guid ViolationId { get; set; }
-        public BlackListDto Url { get; set; }
+        public string Url { get; set; }
         public string ComputerName { get; set; }
         public DateTime TimeStamp { get; set; }
         public Guid HandwareId { get; set; }
         public string IpLocal { get; set; }
-        public UserDto Id { get; set; }
+        public Guid UserId { get; set; }
     }
 }

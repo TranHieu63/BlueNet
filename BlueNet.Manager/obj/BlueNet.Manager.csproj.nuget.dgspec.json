@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "J:\\BlueNet\\BlueNet.Manager\\BlueNet.Manager.csproj": {}
+    "J:\\BlueNet-20220618T020959Z-001\\BlueNet\\BlueNet.Manager\\BlueNet.Manager.csproj": {}
   },
   "projects": {
-    "J:\\BlueNet\\BlueNet.Manager\\BlueNet.Manager.csproj": {
+    "J:\\BlueNet-20220618T020959Z-001\\BlueNet\\BlueNet.Manager\\BlueNet.Manager.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "J:\\BlueNet\\BlueNet.Manager\\BlueNet.Manager.csproj",
+        "projectUniqueName": "J:\\BlueNet-20220618T020959Z-001\\BlueNet\\BlueNet.Manager\\BlueNet.Manager.csproj",
         "projectName": "BlueNet.Manager",
-        "projectPath": "J:\\BlueNet\\BlueNet.Manager\\BlueNet.Manager.csproj",
+        "projectPath": "J:\\BlueNet-20220618T020959Z-001\\BlueNet\\BlueNet.Manager\\BlueNet.Manager.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "J:\\BlueNet\\BlueNet.Manager\\obj\\",
+        "outputPath": "J:\\BlueNet-20220618T020959Z-001\\BlueNet\\BlueNet.Manager\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "J:\\BlueNet\\BlueNet.Models\\BlueNet.Models.csproj": {
-                "projectPath": "J:\\BlueNet\\BlueNet.Models\\BlueNet.Models.csproj"
+              "J:\\BlueNet-20220618T020959Z-001\\BlueNet\\BlueNet.Models\\BlueNet.Models.csproj": {
+                "projectPath": "J:\\BlueNet-20220618T020959Z-001\\BlueNet\\BlueNet.Models\\BlueNet.Models.csproj"
               }
             }
           }
@@ -100,14 +100,14 @@
         }
       }
     },
-    "J:\\BlueNet\\BlueNet.Models\\BlueNet.Models.csproj": {
+    "J:\\BlueNet-20220618T020959Z-001\\BlueNet\\BlueNet.Models\\BlueNet.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "J:\\BlueNet\\BlueNet.Models\\BlueNet.Models.csproj",
+        "projectUniqueName": "J:\\BlueNet-20220618T020959Z-001\\BlueNet\\BlueNet.Models\\BlueNet.Models.csproj",
         "projectName": "BlueNet.Models",
-        "projectPath": "J:\\BlueNet\\BlueNet.Models\\BlueNet.Models.csproj",
+        "projectPath": "J:\\BlueNet-20220618T020959Z-001\\BlueNet\\BlueNet.Models\\BlueNet.Models.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "J:\\BlueNet\\BlueNet.Models\\obj\\",
+        "outputPath": "J:\\BlueNet-20220618T020959Z-001\\BlueNet\\BlueNet.Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",

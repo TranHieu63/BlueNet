@@ -1,0 +1,48 @@
+﻿@page "/violations"
+
+@using BlueNet.Manager.Components;
+
+@inject IConfiguration Configuration
+
+<h3>Danh sách vi phạm</h3>
+
+@if (violationParameters == null)
+{
+   <LoadingIndicator/>
+}
+else{
+   <div class="row mt-4">
+        <table class="table">
+        <thead>
+            <tr>
+                @*<th>ViolationId</th>*@
+                <th>Url</th>
+                <th>ComputerName</th>
+                <th>TimeStamp</th>
+                <th>HandwareId</th>
+                <th>IpLocal</th>
+                <th>UserId</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in violationParameters)
+            {
+                <tr>
+                    @*<td>@item.ViolationId</td>*@
+                    <td>@item.Url</td>
+                    <td>@item.ComputerName</td>
+                    <td>@item.TimeStamp.ToString(Configuration["DataTimeFormat"])</td>
+                    <td>@item.HandwareId</td>
+                    <td>@item.IpLocal</td>
+                    <td>@item.UserId</td>
+                   
+                </tr>
+            }
+        </tbody>
+
+        </table>
+    </div>
+
+
+ }

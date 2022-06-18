@@ -13,7 +13,7 @@ namespace BlueNet.Manager.Services
         //Task<PagedList<BlackListDto>> GetBlackList(BlackListSearch blackListSearch);
         Task<BlackListDto> GetBlackListDetail(string id);
 
-        Task<bool> CreateBlackList(BlackListCreateRequest request);
+        Task<object> CreateBlackList(BlackListCreateRequest request);
 
         Task<bool> UpdateBlackList(Guid id, BlackListUpdateRequest request);
 

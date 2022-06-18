@@ -28,6 +28,7 @@ namespace BlueNet.Manager
             //AddTransient
             builder.Services.AddTransient<IBlackListApiClient, BlackListApiClient>();
             builder.Services.AddTransient<IUserApiClient, UserApiClient>();
+            builder.Services.AddTransient<IViolationApiClient, ViolationApiClient>();
 
             //AddBlazoredToast
             builder.Services.AddBlazoredToast();

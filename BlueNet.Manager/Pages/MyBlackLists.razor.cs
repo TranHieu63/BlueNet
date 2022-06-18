@@ -1,4 +1,5 @@
-﻿using BlueNet.Manager.Components;
+﻿using Blazored.LocalStorage;
+using BlueNet.Manager.Components;
 using BlueNet.Manager.Services;
 using BlueNet.Models;
 using Microsoft.AspNetCore.Components;
@@ -17,6 +18,8 @@ namespace BlueNet.Manager.Pages
         [Inject] private IBlackListApiClient BlackListApiClient { get; set; }
         [Inject] private AuthenticationStateProvider authProvider { get; set; }
 
+        [Inject] private ILocalStorageService _localStorage { get; set; }
+
         AuthenticationState authState;
         private string userId;
 
@@ -30,11 +33,14 @@ namespace BlueNet.Manager.Pages
 
         protected override async Task OnInitializedAsync()
         {
+            //Lấy ra userId đang đăng nhập
+            string userId = await _localStorage.GetItemAsync<string>("UserId");
 
+            //gán giá trị UserId cho _blackListSearch bằng giá trị userId vừa lấy được
+            _blackListSearch.UserId = Guid.Parse(userId);
 
             BlackLists = await BlackListApiClient.GetBlackList(_blackListSearch);
 
-            
         }
 
         public async Task SearchBlackList(BlackListSearch blackListSearch)

@@ -14,15 +14,15 @@ namespace BlueNet.Models
         public string UserName { get; set; }
 
         [MaxLength(250)]
-        [Required]
+        //[Required]
         public string NormalizedUserName { get; set; }
 
         [MaxLength(250)]
-        [Required]
+        //[Required]
         public string Email { get; set; }
 
         [MaxLength(250)]
-        [Required]
+        //[Required]
         public string NormalizedEmail { get; set; }
 
         [MaxLength(250)]
@@ -34,7 +34,15 @@ namespace BlueNet.Models
         public string LastName { get; set; }
 
         [MaxLength(250)]
-        [Required]
+        //[Required]
         public string SecurityStamp { get; set; }
+
+        [MaxLength(250)]
+        [Required]
+        public string Password { get; set; }
+
+        
+        [Required]
+        public Guid RoleId { get; set; }
     }
 }

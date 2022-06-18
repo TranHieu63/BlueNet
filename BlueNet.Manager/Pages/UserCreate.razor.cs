@@ -3,6 +3,7 @@ using BlueNet.Manager.Services;
 using BlueNet.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BlueNet.Manager.Pages
@@ -14,6 +15,8 @@ namespace BlueNet.Manager.Pages
         [Inject] private IToastService ToastService { get; set; }
 
         private UserCreateRequest UserRequestCreate = new UserCreateRequest();
+
+        private List<RoleDto> _ListRoleDto = new List<RoleDto>();
 
         private async Task SubmitCreateUser(EditContext context)
         {
@@ -27,6 +30,13 @@ namespace BlueNet.Manager.Pages
             {
                 ToastService.ShowError($"An error occurred in progress. Please contact to administrator.", "Error");
             }
+        }
+
+        protected async override Task OnInitializedAsync()
+        {
+            //Lấy danh sách role dựa vào userApiClient
+            _ListRoleDto = await UserApiClient.GetRole();
+            
         }
     }
 }

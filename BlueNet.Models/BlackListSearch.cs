@@ -10,5 +10,6 @@ namespace BlueNet.Models
     {
         public string Url { get; set; }
         public Guid? UserId { get; set; }
+        //public string UserName { get; set; }
     }
 }

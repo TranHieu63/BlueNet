@@ -1,4 +1,5 @@
-﻿using BlueNet.Manager.Components;
+﻿using Blazored.LocalStorage;
+using BlueNet.Manager.Components;
 using BlueNet.Manager.Services;
 using BlueNet.Models;
 using Microsoft.AspNetCore.Components;
@@ -16,15 +17,15 @@ namespace BlueNet.Manager.Pages
         [Inject] private IBlackListApiClient BlackListApiClient { get; set; }
         [Inject] private NavigationManager NavigationManager { get; set; }
 
-        //
         [Inject] private AuthenticationStateProvider authProvider { get; set; }
 
         [Inject] private IUserApiClient UserApiClient { get; set; }
 
         private List<BlackListDto> BlackLists;
 
-        //
-        private int role;
+        private string _roleName;
+
+        
 
         protected Confirmation DeleteConfirmation { get; set; }
 
@@ -32,9 +33,13 @@ namespace BlueNet.Manager.Pages
 
         private BlackListSearch _blackListSearch = new BlackListSearch();
 
+        [Inject] private ILocalStorageService _localStorage { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
+
+            _roleName = await _localStorage.GetItemAsync<string>("UserRole");
+           
 
             BlackLists = await BlackListApiClient.GetBlackList(_blackListSearch);
 
@@ -57,10 +62,7 @@ namespace BlueNet.Manager.Pages
                     {
                         //nếu có user đăng nhập thì lấy tiếp thông tin quyền hạn
 
-                        if (true)
-                        {
-                            role = 1;
-                        }
+                        
                     }
                     else
                     {
