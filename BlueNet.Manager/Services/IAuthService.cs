@@ -9,12 +9,7 @@ namespace BlueNet.Manager.Services
 
         Task Logout();
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        /// 2022.06.14: tthieu
-        /// 2022.06.15: bổ sung cái gì đó
+      
         Task<UserDto> GetCurrentLoginUser();
     }
 }

@@ -32,39 +32,14 @@ else
         <small id="userIdHelp" class="form-text text-muted">Please enter black list title here.</small>
     </div>*@
 
+    <div>_userId: @_userId</div>
+
     <button type="submit" class="btn btn-primary">Submit</button>
 </EditForm>
 }
 
 
 @code {
-    [Parameter]
-    public string blackListId { get; set; }
-
-    private BlackListUpdateRequest BLackListUpdate;
-
-    protected async override Task OnInitializedAsync()
-    {
-        var blackListDto = await BlackListApiClient.GetBlackListDetail(blackListId);
-
-        BLackListUpdate = new BlackListUpdateRequest();
-        BLackListUpdate.Url = blackListDto.Url;
-        ///blackListDto.UserId = blackListDto.UserId;
-    }
-
-
-    private async Task SubmitUpdateBlackList(EditContext context)
-    {
-        var result = await BlackListApiClient.UpdateBlackList(Guid.Parse(blackListId), BLackListUpdate);
-        if (result)
-         {
-            ToastService.ShowSuccess($"{BLackListUpdate.Url} has been update successfully.", "Success");
-            NavigationManager.NavigateTo("/blackLists");
-        }
-        else
-        {
-            ToastService.ShowError($"An error occurred in progress. Please contact to administrator.","Error");
-        }
-    }
+    
 }
 

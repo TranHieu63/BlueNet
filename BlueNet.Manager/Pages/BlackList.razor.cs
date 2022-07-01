@@ -16,36 +16,28 @@ namespace BlueNet.Manager.Pages
     {
         [Inject] private IBlackListApiClient BlackListApiClient { get; set; }
         [Inject] private NavigationManager NavigationManager { get; set; }
-
         [Inject] private AuthenticationStateProvider authProvider { get; set; }
-
         [Inject] private IUserApiClient UserApiClient { get; set; }
 
         private List<BlackListDto> BlackLists;
 
         private string _roleName;
 
-        
-
         protected Confirmation DeleteConfirmation { get; set; }
 
         private Guid DeleteId { get; set; }
 
         private BlackListSearch _blackListSearch = new BlackListSearch();
-
         [Inject] private ILocalStorageService _localStorage { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
-
             _roleName = await _localStorage.GetItemAsync<string>("UserRole");
-           
 
             BlackLists = await BlackListApiClient.GetBlackList(_blackListSearch);
 
             //lấy thông tin user đăng nhập
             var authState = await authProvider.GetAuthenticationStateAsync();
-            
 
             if (authState != null)
             {
@@ -61,12 +53,6 @@ namespace BlueNet.Manager.Pages
                     if (userDto != null)
                     {
                         //nếu có user đăng nhập thì lấy tiếp thông tin quyền hạn
-
-                        
-                    }
-                    else
-                    {
-
                     }
                 }
                 else

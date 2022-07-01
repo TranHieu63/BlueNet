@@ -37,7 +37,7 @@ namespace BlueNet.Manager
             return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity(ParseClaimsFromJwt(savedToken), "jwt")));
         }
 
-        //đăng nhập xong chuyển trạng thái user => đã Authen
+        //đăng nhập xong chuyển trạng thái user => đã xác thực
         public void MarkUserAsAuthenticated(string userName)
         {
             var authenticatedUser = new ClaimsPrincipal(new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, userName) }, "apiauth"));

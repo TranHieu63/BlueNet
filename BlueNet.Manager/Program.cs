@@ -42,7 +42,6 @@ namespace BlueNet.Manager
 
             builder.Services.AddScoped<IAuthService, AuthService>();
 
-
             builder.Services.AddScoped(sp => new HttpClient
             {
                 BaseAddress = new Uri(builder.Configuration["BackendApiUrl"])

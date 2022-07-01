@@ -1,4 +1,4 @@
-﻿using BlueNet.Api.Entities;
+﻿using BlueNet.Api.Entities;  
 using BlueNet.Api.Repositoties;
 using BlueNet.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -13,7 +13,6 @@ namespace BlueNet.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-   // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class UserController : ControllerBase
     {
         private readonly IUserRepository _userListRepository;
@@ -30,7 +29,6 @@ namespace BlueNet.Api.Controllers
         public async Task<IActionResult> GetAll()
         {
             var users = await _userListRepository.GetUserList();
-
             var userDtos = users.Select(x => new UserDto()
             {
                 Id = x.Id,

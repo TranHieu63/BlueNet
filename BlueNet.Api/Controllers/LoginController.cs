@@ -19,7 +19,9 @@ namespace BlueNet.Api.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
+        //lay thong tin tao toke
         private readonly IConfiguration _configuration;
+
         private readonly SignInManager<User> _signInManager;
         private readonly UserManager<User> _userManager;
 

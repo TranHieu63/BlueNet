@@ -30,10 +30,6 @@ namespace BlueNet.Api.Repositoties
             if (blackListSearch.UserId.HasValue)
                 query = query.Where(x => x.UserId == blackListSearch.UserId.Value);
 
-            //if (!string.IsNullOrEmpty(blackListSearch.UserName))
-            //    query = query.Where(x => x.UserName.Contains(blackListSearch.UserName));
-
-
             return await query.OrderByDescending(x => x.CreatedDate).ToListAsync();
         }
 
@@ -83,12 +79,9 @@ namespace BlueNet.Api.Repositoties
 
         public async Task<bool> CheckUrl(CheckUrlParameter checkUrl)
         {
-
             bool result = false;
-
-            //int userId = checkUrlParameter.UserId;
+            
             string url = checkUrl.Url;
-            //Guid UserId = checkUrl.UserId;
 
             //lấy ra tất cả blacklist
             List<BlackList> blackListAll = await _context.BlackLists.ToListAsync();

@@ -13,112 +13,112 @@ namespace BlueNet.Manager.Pages
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "J:\BlueNet\BlueNet\BlueNet.Manager\_Imports.razor"
+#line 1 "J:\BlueNet-20220618T020959Z-001\BlueNet\BlueNet.Manager\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "J:\BlueNet\BlueNet\BlueNet.Manager\_Imports.razor"
+#line 2 "J:\BlueNet-20220618T020959Z-001\BlueNet\BlueNet.Manager\_Imports.razor"
 using System.Net.Http.Json;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "J:\BlueNet\BlueNet\BlueNet.Manager\_Imports.razor"
+#line 3 "J:\BlueNet-20220618T020959Z-001\BlueNet\BlueNet.Manager\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "J:\BlueNet\BlueNet\BlueNet.Manager\_Imports.razor"
+#line 4 "J:\BlueNet-20220618T020959Z-001\BlueNet\BlueNet.Manager\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "J:\BlueNet\BlueNet\BlueNet.Manager\_Imports.razor"
+#line 5 "J:\BlueNet-20220618T020959Z-001\BlueNet\BlueNet.Manager\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "J:\BlueNet\BlueNet\BlueNet.Manager\_Imports.razor"
+#line 6 "J:\BlueNet-20220618T020959Z-001\BlueNet\BlueNet.Manager\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "J:\BlueNet\BlueNet\BlueNet.Manager\_Imports.razor"
+#line 7 "J:\BlueNet-20220618T020959Z-001\BlueNet\BlueNet.Manager\_Imports.razor"
 using Microsoft.AspNetCore.Components.WebAssembly.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "J:\BlueNet\BlueNet\BlueNet.Manager\_Imports.razor"
+#line 8 "J:\BlueNet-20220618T020959Z-001\BlueNet\BlueNet.Manager\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "J:\BlueNet\BlueNet\BlueNet.Manager\_Imports.razor"
+#line 9 "J:\BlueNet-20220618T020959Z-001\BlueNet\BlueNet.Manager\_Imports.razor"
 using BlueNet.Manager;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "J:\BlueNet\BlueNet\BlueNet.Manager\_Imports.razor"
+#line 10 "J:\BlueNet-20220618T020959Z-001\BlueNet\BlueNet.Manager\_Imports.razor"
 using BlueNet.Manager.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 12 "J:\BlueNet\BlueNet\BlueNet.Manager\_Imports.razor"
+#line 12 "J:\BlueNet-20220618T020959Z-001\BlueNet\BlueNet.Manager\_Imports.razor"
 using Blazored.Toast;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 13 "J:\BlueNet\BlueNet\BlueNet.Manager\_Imports.razor"
+#line 13 "J:\BlueNet-20220618T020959Z-001\BlueNet\BlueNet.Manager\_Imports.razor"
 using Blazored.Toast.Services;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 15 "J:\BlueNet\BlueNet\BlueNet.Manager\_Imports.razor"
+#line 15 "J:\BlueNet-20220618T020959Z-001\BlueNet\BlueNet.Manager\_Imports.razor"
 using Microsoft.Extensions.Configuration;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "J:\BlueNet\BlueNet\BlueNet.Manager\Pages\BlackListUpdate.razor"
+#line 3 "J:\BlueNet-20220618T020959Z-001\BlueNet\BlueNet.Manager\Pages\BlackListUpdate.razor"
 using BlueNet.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "J:\BlueNet\BlueNet\BlueNet.Manager\Pages\BlackListUpdate.razor"
+#line 4 "J:\BlueNet-20220618T020959Z-001\BlueNet\BlueNet.Manager\Pages\BlackListUpdate.razor"
 using BlueNet.Manager.Services;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "J:\BlueNet\BlueNet\BlueNet.Manager\Pages\BlackListUpdate.razor"
+#line 5 "J:\BlueNet-20220618T020959Z-001\BlueNet\BlueNet.Manager\Pages\BlackListUpdate.razor"
 using BlueNet.Manager.Components;
 
 #line default
@@ -132,41 +132,6 @@ using BlueNet.Manager.Components;
         {
         }
         #pragma warning restore 1998
-#nullable restore
-#line 40 "J:\BlueNet\BlueNet\BlueNet.Manager\Pages\BlackListUpdate.razor"
-       
-    [Parameter]
-    public string blackListId { get; set; }
-
-    private BlackListUpdateRequest BLackListUpdate;
-
-    protected async override Task OnInitializedAsync()
-    {
-        var blackListDto = await BlackListApiClient.GetBlackListDetail(blackListId);
-
-        BLackListUpdate = new BlackListUpdateRequest();
-        BLackListUpdate.Url = blackListDto.Url;
-        ///blackListDto.UserId = blackListDto.UserId;
-    }
-
-
-    private async Task SubmitUpdateBlackList(EditContext context)
-    {
-        var result = await BlackListApiClient.UpdateBlackList(Guid.Parse(blackListId), BLackListUpdate);
-        if (result)
-         {
-            ToastService.ShowSuccess($"{BLackListUpdate.Url} has been update successfully.", "Success");
-            NavigationManager.NavigateTo("/blackLists");
-        }
-        else
-        {
-            ToastService.ShowError($"An error occurred in progress. Please contact to administrator.","Error");
-        }
-    }
-
-#line default
-#line hidden
-#nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IToastService ToastService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IBlackListApiClient BlackListApiClient { get; set; }

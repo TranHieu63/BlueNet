@@ -114,7 +114,6 @@ namespace BlueNet.Api.Controllers
                     CreatedDate = DateTime.Now
                 });
 
-
                 return CreatedAtAction(nameof(GetById), new { id = blackList.BlackListId }, blackList);
             }
         }

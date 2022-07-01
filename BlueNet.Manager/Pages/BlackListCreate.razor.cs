@@ -39,7 +39,6 @@ namespace BlueNet.Manager.Pages
 
         private async Task SubmitCreateBlackList(EditContext context)
         {
-
             string userId = await _localStorage.GetItemAsync<string>("UserId");
 
             BLackListCreate.UserId = Guid.Parse(userId);
@@ -53,7 +52,7 @@ namespace BlueNet.Manager.Pages
             else if (result!= null)
             {
                 ToastService.ShowSuccess($"{BLackListCreate.Url} has been created successfully.", "Success");
-                NavigationManager.NavigateTo("/blackLists");
+                NavigationManager.NavigateTo("/myBlackLists");
             }
             else
             {

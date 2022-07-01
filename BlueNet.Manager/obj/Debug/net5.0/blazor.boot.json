@@ -201,14 +201,14 @@
       "netstandard.dll": "sha256-W3q3PN+lpRB+tRJEIhtMgYOGFv0pauEeeCS9iIRkKAM=",
       "System.Private.CoreLib.dll": "sha256-9rUJv1mXEQdGt\/kWiJ1ITPPzp3cAi3lSmqHVTisp7w0=",
       "BlueNet.Models.dll": "sha256-nozY5q2eg6ao6+CLSFLIOYfffnwzGtMV8j00NQqoc0E=",
-      "BlueNet.Manager.dll": "sha256-9+mNyj4NzsvLOvJnrNNFavKi58fKoz0aOpXxjHcAXW4="
+      "BlueNet.Manager.dll": "sha256-DJA8X+FtUB+wGYOnYrpIn68PCsXPx3LZaXarGx1v29Q="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
       "BlueNet.Models.pdb": "sha256-HMNYNxembE1E0H4U2Uhu7\/EBNSBqUIH17WxSsMMe+90=",
-      "BlueNet.Manager.pdb": "sha256-wNKJZIyD3dzTo\/Xy0aYBNNo9cI7c9E05wrffERgAE\/I="
+      "BlueNet.Manager.pdb": "sha256-Z8wA33kGJvYWMEelZzqzSizmnXBqwqTgwr8K8Y7ucD8="
     },
     "runtime": {
       "dotnet.timezones.blat": "sha256-8oJip361m8OrfLRJOuIeswWKaoxtT27\/wINCxhn+s4c=",

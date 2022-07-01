@@ -43,6 +43,7 @@ namespace BlueNet.Api
             services.AddIdentity<User, Role>()
                 .AddEntityFrameworkStores<BlueNetDbContext>();
 
+            //Tạo Token
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {

@@ -30,10 +30,10 @@ namespace BlueNet.Services
 
         public async Task<LoginResponse> Login(LoginRequest loginRequest)
         {
-
             var result = await _httpClient.PostAsJsonAsync("/api/login", loginRequest);
+            
+            //lấy string
             var content = await result.Content.ReadAsStringAsync();
-
             //Chuyen Json
             var loginResponse = JsonSerializer.Deserialize<LoginResponse>(content,
                 new JsonSerializerOptions()
@@ -63,7 +63,6 @@ namespace BlueNet.Services
             ((ApiAuthenticationStateProvider)_authenticationStateProvider).MarkUserAsLoggedOut();
             _httpClient.DefaultRequestHeaders.Authorization = null;
         }
-
 
         public async Task<UserDto> GetCurrentLoginUser()
         {
